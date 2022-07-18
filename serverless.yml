@@ -1,0 +1,20 @@
+service: pdf-generator
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-south-1
+  stage: ${opt:stage, 'dev'}
+  timeout: 28
+
+functions:
+  hello:
+    handler: handler.handler
+    events:
+      - httpApi:
+          path: /
+          method: GET
+      - httpApi:
+          path: /
+          method: OPTIONS
